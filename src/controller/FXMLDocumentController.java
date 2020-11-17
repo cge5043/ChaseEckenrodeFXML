@@ -174,7 +174,7 @@ public class FXMLDocumentController implements Initializable {
     @Override //Got from class code
     public void initialize(URL url, ResourceBundle rb) {
         //database reference: "IntroJavaFXPU"
-        manager = (EntityManager) Persistence.createEntityManagerFactory("IntroJavaFXPU").createEntityManager();
+        manager = (EntityManager) Persistence.createEntityManagerFactory("gp11_db").createEntityManager();
 
     }
 

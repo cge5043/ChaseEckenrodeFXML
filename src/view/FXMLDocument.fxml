@@ -12,6 +12,5 @@
       <Button fx:id="buttonReadByEmailTitle" layoutX="19.0" layoutY="50.0" mnemonicParsing="false" onAction="#readByEmailAddress" text="Read By Email Title" />
       <Button fx:id="buttonDeleteEmail" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteEmail" text="Delete Email" />
       <Button fx:id="buttonUpdateEmails" layoutX="19.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateEmails" text="Update Emails" />
-      <Button fx:id="buttonReadByEmailTitle1" layoutX="19.0" layoutY="82.0" mnemonicParsing="false" onAction="readByIdAndEmailAddress" text="Read By Email Title and Address" />
     </children>
 </AnchorPane>
