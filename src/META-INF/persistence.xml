@@ -3,6 +3,7 @@
   <persistence-unit name="gp11_db" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Email</class>
+    <class>model.Mailbox</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/gp11_db;create=true"/>
       <property name="javax.persistence.jdbc.user" value="APP"/>

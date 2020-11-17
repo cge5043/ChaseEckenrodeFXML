@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import model.Email;
+import model.Mailbox;
 
 /**
  *
@@ -62,11 +62,11 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter Email Text:");
         String emailText = input.next();
         
-        Email email = new Email();
+        Mailbox email = new Mailbox();
         
-
-        email.setId(id);
-        email.setEmailaddress(emailAddress);
+        
+        email.setCanvasaccountid(id);
+        email.setEmailsender(emailAddress);
         email.setEmailtitle(emailTitle);
         email.setEmailtext(emailText);
             
@@ -81,9 +81,10 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter ID:");
         int id = input.nextInt();
         
-        Email e = readById(id);
-        System.out.println("we are deleting email number: "+ e.toString());
+        Mailbox e = readById(id);
+        System.out.println("Deleting email number: "+ e.toString());
         delete(e);
+        System.out.println("Email number: " + id + "is successfully deleted!");
 
     }
     
@@ -95,7 +96,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter ID:");
         int id = input.nextInt();
         
-        Email e = readById(id);
+        Mailbox e = readById(id);
         System.out.println(e.toString());
 
     }
@@ -122,7 +123,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter Email Address:");
         String address = input.next();
             
-        List<Email> emails =  readByIdAndEmailAddress(id, address);
+//        List<Mailbox> emails =  readByIdAndEmailAddress(id, address);
 
     }
 
@@ -144,13 +145,13 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter Email Title:");
         String emailTitle = input.next();
         
-        Email email = new Email();
+        Mailbox email = new Mailbox();
         
-        email.setId(id);
-        email.setEmailaddress(emailAddress);
+        email.setCanvasaccountid(id);
+        email.setEmailsender(emailAddress);
         email.setEmailtitle(emailTitle);
                 
-        update(email);
+//        update(email);
 
     }
     
@@ -161,10 +162,10 @@ public class FXMLDocumentController implements Initializable {
         label.setText("Hello World!");
 
         Query query = manager.createNamedQuery("Email.findAll");
-        List<Email> data = query.getResultList();
+        List<Mailbox> data = query.getResultList();
 
-        for (Email e : data) {
-            System.out.println(e.getId() + " " + e.getEmailaddress() + " " + e.getEmailtitle());
+        for (Mailbox e : data) {
+            System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
         }
     }
 
@@ -183,12 +184,12 @@ public class FXMLDocumentController implements Initializable {
     */
     
     // Create operation //from class code
-    public void create(Email email) {
+    public void create(Mailbox email) {
         try {
 
             manager.getTransaction().begin();
 
-            if (email.getId() != null) {
+            if (email.getCanvasaccountid() != null) {
                 
                 manager.persist(email);
 
@@ -202,87 +203,87 @@ public class FXMLDocumentController implements Initializable {
     }
     
     // Read Operations //from class code
-    public List<Email> readAll(){
+    public List<Mailbox> readAll(){
         Query query = manager.createNamedQuery("Email.findAll");
-        List<Email> emails = query.getResultList();
+        List<Mailbox> emails = query.getResultList();
 
-        for (Email e : emails) {
-            System.out.println(e.getId() + " " + e.getEmailaddress() + " " + e.getEmailtitle());
+        for (Mailbox e : emails) {
+            System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
         }
         
         return emails;
     }
     
     //from class code
-    public Email readById(int id){
+    public Mailbox readById(int id){
         Query query = manager.createNamedQuery("Email.findById");
         
 
         query.setParameter("id", id);
         
 
-        Email e = (Email) query.getSingleResult();
+        Mailbox e = (Mailbox) query.getSingleResult();
         if (e != null) {
-            System.out.println(e.getId() + " " + e.getEmailaddress() + " " + e.getEmailtitle());
+            System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
         }
         
         return e;
     }   
     
     //from class code
-    public List<Email> readByEmailAddress(String emailAddress){
+    public List<Mailbox> readByEmailAddress(String emailAddress){
         Query query = manager.createNamedQuery("Email.findByEmailAddress");
         
 
         query.setParameter("emailAdress", emailAddress);
         
 
-        List<Email> email =  query.getResultList();
-        for (Email e: email) {
-            System.out.println(e.getId() + " " + e.getEmailaddress() + " " + e.getEmailtitle());
+        List<Mailbox> email =  query.getResultList();
+        for (Mailbox e: email) {
+            System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
         }
         
         return email;
     }        
     
-    public List<Email> readByIdAndEmailAddress(int id, String emailAddress){
-        Query query = manager.createNamedQuery("Email.findByIdAndEmailAddress");
+    //public List<Mailbox> readByIdAndEmailAddress(int id, String emailAddress){
+        //Query Mailbox = manager.createNamedQuery("Email.findByIdAndEmailAddress");
         
-        query.setParameter("id", id);
-        query.setParameter("email address", emailAddress);
+        //query.setParameter("id", id);
+        //query.setParameter("email address", emailAddress);
         
-        List<Email> emails =  query.getResultList();
-        for (Email email: emails) {
-            System.out.println(email.getId() + " " + email.getEmailaddress() + " " + email.getEmailtitle());
-        }
+        //List<Mailbox> emails =  query.getResultList();
+        //for (Mailbox email: emails) {
+        //    System.out.println(email.getCanvasaccountid() + " " + email.getEmailsender() + " " + email.getEmailtitle());
+        //}
         
-        return emails;
-    }        
+        //return emails;
+    //}        
     
     
     // Update operation from class code
-    public void update(Email model) {
-        try {
-
-            Email existingEmail = manager.find(Email.class, model.getId());
-
-            if (existingEmail != null) {
-                manager.getTransaction().begin();
-                
-                existingEmail.setEmailaddress(model.getEmailaddress());
-                existingEmail.setEmailtitle(model.getEmailtitle());
-                
-                manager.getTransaction().commit();
-            }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+//    public void update(Mailbox model) {
+//        try {
+//
+//            Mailbox existingEmail = manager.find(Mailbox.class, model.canvasAccountId());
+//
+//            if (existingEmail != null) {
+//                manager.getTransaction().begin();
+//                
+//                existingEmail.setEmailsender(model.getEmailsender());
+//                existingEmail.setEmailtitle(model.getEmailtitle());
+//                
+//                manager.getTransaction().commit();
+//            }
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    }
 
     // Delete operation from class code
-    public void delete(Email email) {
+    public void delete(Mailbox email) {
         try {
-            Email existingEmail = manager.find(Email.class, email.getId());
+            Mailbox existingEmail = manager.find(Mailbox.class, email.getCanvasaccountid());
 
 
             if (existingEmail != null) {
