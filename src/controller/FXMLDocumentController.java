@@ -77,11 +77,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Mailbox, Date> emailDate;
 
-
-    // the observable list of students that is used to insert data into the table
     private ObservableList<Mailbox> emailData;
 
-    // add the proper data to the observable list to be rendered in the table
     public void setTableData(List<Mailbox> emailList) {
         emailData = FXCollections.observableArrayList();
         emailList.forEach(s -> {
@@ -103,8 +100,8 @@ public class FXMLDocumentController implements Initializable {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Information Dialog Box");// line 2
 //            alert.setHeaderText("This is header section to write heading");// line 3
-//            alert.setContentText("No student");// line 4
-//            alert.showAndWait(); // line 5
+//            alert.setContentText("No email");
+//            alert.showAndWait(); 
 //        } else {
 //
 //            // setting table data
@@ -124,7 +121,7 @@ public class FXMLDocumentController implements Initializable {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Information Dialog Box");
 //            alert.setHeaderText("This is header section to write heading");
-//            alert.setContentText("No student");
+//            alert.setContentText("No email");
 //            alert.showAndWait();
 //        } 
 //        else {
