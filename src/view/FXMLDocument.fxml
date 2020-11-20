@@ -2,15 +2,30 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="266.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="731.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
     <children>
-        <Button fx:id="button" layoutX="353.0" layoutY="189.0" onAction="#handleButtonAction" text="Click Me!" />
+        <Button fx:id="button" layoutX="245.0" layoutY="163.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Button fx:id="buttonCreateEmail" layoutX="19.0" layoutY="11.0" mnemonicParsing="false" onAction="#createEmail" text="Create Email" />
       <Button fx:id="buttonReadByEmailTitle" layoutX="19.0" layoutY="50.0" mnemonicParsing="false" onAction="#readByEmailAddress" text="Read By Email Title" />
       <Button fx:id="buttonDeleteEmail" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteEmail" text="Delete Email" />
       <Button fx:id="buttonUpdateEmails" layoutX="19.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateEmails" text="Update Emails" />
+      <Label layoutX="18.0" layoutY="276.0" text="By Name:" />
+      <Button layoutX="685.0" layoutY="263.0" mnemonicParsing="false" onAction="#searchByEmailAction" text="Search" />
+      <Button layoutX="637.0" layoutY="305.0" mnemonicParsing="false" onAction="#searchByEmailAdvancedAction" prefHeight="27.0" prefWidth="115.0" text="Advanced Search" />
+      <Button layoutX="669.0" layoutY="679.0" mnemonicParsing="false" onAction="#actionShowDetails" text="Show Details" />
+      <Button layoutX="491.0" layoutY="678.0" mnemonicParsing="false" onAction="#actionShowDetailsInPlace" prefHeight="27.0" prefWidth="154.0" text="Show Details In-Place" />
+      <TableView layoutX="4.0" layoutY="340.0" prefHeight="266.0" prefWidth="761.0">
+        <columns>
+          <TableColumn prefWidth="67.99999713897705" text="ID" />
+          <TableColumn prefWidth="193.60003662109375" text="Sender" />
+            <TableColumn prefWidth="364.7999267578125" text="Email Title" />
+            <TableColumn prefWidth="134.40004882812502" text="Date" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

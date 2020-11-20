@@ -5,15 +5,28 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -45,6 +58,111 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button buttonReadByIdAndEmailAddress;
+    
+    @FXML
+    private TextField textboxName;
+    
+    @FXML
+    private TableView<Mailbox> emailTable;
+    
+    @FXML
+    private TableColumn<Mailbox, Integer> canvasID;
+    
+    @FXML
+    private TableColumn<Mailbox, String> emailSender;
+    
+    @FXML
+    private TableColumn<Mailbox, String> emailTitle;
+    
+    @FXML
+    private TableColumn<Mailbox, Date> emailDate;
+
+
+    // the observable list of students that is used to insert data into the table
+    private ObservableList<Mailbox> emailData;
+
+    // add the proper data to the observable list to be rendered in the table
+    public void setTableData(List<Mailbox> emailList) {
+        emailData = FXCollections.observableArrayList();
+        emailList.forEach(s -> {
+            emailData.add(s);
+        });
+        emailTable.setItems(emailData);
+        emailTable.refresh();
+    }
+
+    @FXML
+    void searchByEmailAction(ActionEvent event) {
+        System.out.println("clicked");       
+        String name = textboxName.getText();
+//        List<Mailbox> emails = readByEmail(name);
+//
+//        if (emails == null || emails.isEmpty()) {
+//
+//            // show an alert to inform user 
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Information Dialog Box");// line 2
+//            alert.setHeaderText("This is header section to write heading");// line 3
+//            alert.setContentText("No student");// line 4
+//            alert.showAndWait(); // line 5
+//        } else {
+//
+//            // setting table data
+//            setTableData(emails);
+//        }
+
+    }
+
+    @FXML
+    void searchByEmailAdvancedAction(ActionEvent event) {
+        System.out.println("clicked");     
+        String name = textboxName.getText();
+
+//        List<Mailbox> emails = readByNameAdvanced(name);
+//
+//        if (emails == null || emails.isEmpty()) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Information Dialog Box");
+//            alert.setHeaderText("This is header section to write heading");
+//            alert.setContentText("No student");
+//            alert.showAndWait();
+//        } 
+//        else {
+//            setTableData(emails);
+//        }
+    }
+
+    @FXML
+    void actionShowDetails(ActionEvent event) throws IOException {
+        System.out.println("clicked");
+
+        Mailbox selectedEmail = emailTable.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailModelView.fxml"));
+        Parent detailedModelView = loader.load();
+        Scene tableViewScene = new Scene(detailedModelView);
+        //DetailModelController detailedControlled = loader.getController();
+        //detailedControlled.initData(selectedEmail);
+        Stage stage = new Stage();
+        stage.setScene(tableViewScene);
+        stage.show();
+    }
+
+    @FXML
+    void actionShowDetailsInPlace(ActionEvent event) throws IOException {
+        System.out.println("clicked");
+
+        Mailbox selectedEmail = emailTable.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailModelView.fxml"));
+        Parent detailedModelView = loader.load();
+        Scene tableViewScene = new Scene(detailedModelView);
+        //DetailModelController detailedControlled = loader.getController();
+        //detailedControlled.initData(selectedEmail);
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        //detailedControlled.setPreviousScene(currentScene);
+        Stage stage = (Stage) currentScene.getWindow();
+        stage.setScene(tableViewScene);
+        stage.show();
+    }
 
     @FXML
     void createEmail(ActionEvent event) {
