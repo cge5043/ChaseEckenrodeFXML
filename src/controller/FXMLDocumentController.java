@@ -20,7 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -96,15 +95,14 @@ public class FXMLDocumentController implements Initializable {
 //
 //        if (emails == null || emails.isEmpty()) {
 //
-//            // show an alert to inform user 
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //            alert.setTitle("Information Dialog Box");// line 2
 //            alert.setHeaderText("This is header section to write heading");// line 3
 //            alert.setContentText("No email");
 //            alert.showAndWait(); 
-//        } else {
+//        } 
+//        else {
 //
-//            // setting table data
 //            setTableData(emails);
 //        }
 
@@ -137,8 +135,8 @@ public class FXMLDocumentController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailModelView.fxml"));
         Parent detailedModelView = loader.load();
         Scene tableViewScene = new Scene(detailedModelView);
-        //DetailModelController detailedControlled = loader.getController();
-        //detailedControlled.initData(selectedEmail);
+        DetailModelController detailedControlled = loader.getController();
+        detailedControlled.initData(selectedEmail);
         Stage stage = new Stage();
         stage.setScene(tableViewScene);
         stage.show();
@@ -152,10 +150,10 @@ public class FXMLDocumentController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailModelView.fxml"));
         Parent detailedModelView = loader.load();
         Scene tableViewScene = new Scene(detailedModelView);
-        //DetailModelController detailedControlled = loader.getController();
-        //detailedControlled.initData(selectedEmail);
+        DetailModelController detailedControlled = loader.getController();
+        detailedControlled.initData(selectedEmail);
         Scene currentScene = ((Node) event.getSource()).getScene();
-        //detailedControlled.setPreviousScene(currentScene);
+        detailedControlled.setPreviousScene(currentScene);
         Stage stage = (Stage) currentScene.getWindow();
         stage.setScene(tableViewScene);
         stage.show();
