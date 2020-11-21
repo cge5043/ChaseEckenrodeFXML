@@ -62,7 +62,7 @@ public class FXMLDocumentController implements Initializable {
     private Button buttonReadByIdAndEmailAddress;
     
     @FXML
-    private TextField textboxTitle;
+    private TextField textboxSender;
     
     @FXML
     private TableView<Mailbox> emailTable;
@@ -93,30 +93,30 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void searchByEmailAction(ActionEvent event) {
         System.out.println("clicked");       
-        String title = textboxTitle.getText();
-//        List<Mailbox> emails = readByTitle(title);
-//
-//        if (emails == null || emails.isEmpty()) {
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Information Dialog Box");// line 2
-//            alert.setHeaderText("This is header section to write heading");// line 3
-//            alert.setContentText("No email");
-//            alert.showAndWait(); 
-//        } 
-//        else {
-//
-//            setTableData(emails);
-//        }
+        String emailsender = textboxSender.getText();
+        List<Mailbox> emails = readByEmailAddress(emailsender);
+
+        if (emails == null || emails.isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog Box");
+            alert.setHeaderText("This is header section to write heading");
+            alert.setContentText("No email");
+            alert.showAndWait(); 
+        } 
+        else {
+
+            setTableData(emails);
+        }
 
     }
 
     @FXML
     void searchByEmailAdvancedAction(ActionEvent event) {
         System.out.println("clicked");     
-        String title = textboxTitle.getText();
+        String title = textboxSender.getText();
 
-//        List<Mailbox> emails = readByNameAdvanced(title);
+//        List<Mailbox> emails = readBySenderAdvanced(title);
 //
 //        if (emails == null || emails.isEmpty()) {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -210,13 +210,13 @@ public class FXMLDocumentController implements Initializable {
     
 
     @FXML
-    void readByTitle(ActionEvent event) {
+    void readBySender(ActionEvent event) {
         Scanner input = new Scanner(System.in);
         
-        System.out.println("Enter Title:");
-        int title = input.nextInt();
+        System.out.println("Enter Sender:");
+        int sender = input.nextInt();
         
-        Mailbox e = readById(title);
+        Mailbox e = readById(sender);
         System.out.println(e.toString());
 
     }
@@ -281,7 +281,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
 
-        Query query = manager.createNamedQuery("Email.findAll");
+        Query query = manager.createNamedQuery("Mailbox.findAll");
         List<Mailbox> data = query.getResultList();
 
         for (Mailbox e : data) {
@@ -333,7 +333,7 @@ public class FXMLDocumentController implements Initializable {
     
     // Read Operations //from class code
     public List<Mailbox> readAll(){
-        Query query = manager.createNamedQuery("Email.findAll");
+        Query query = manager.createNamedQuery("Mailbox.findAll");
         List<Mailbox> emails = query.getResultList();
 
         for (Mailbox e : emails) {
@@ -345,7 +345,7 @@ public class FXMLDocumentController implements Initializable {
     
     //from class code
     public Mailbox readById(int id){
-        Query query = manager.createNamedQuery("Email.findById");
+        Query query = manager.createNamedQuery("Mailbox.findById");
         
 
         query.setParameter("id", id);
@@ -361,10 +361,10 @@ public class FXMLDocumentController implements Initializable {
     
     //from class code
     public List<Mailbox> readByEmailAddress(String emailAddress){
-        Query query = manager.createNamedQuery("Email.findByEmailAddress");
+        Query query = manager.createNamedQuery("Mailbox.findByEmailsender");
         
 
-        query.setParameter("emailAdress", emailAddress);
+        query.setParameter("emailsender", emailAddress);
         
 
         List<Mailbox> email =  query.getResultList();
@@ -427,5 +427,4 @@ public class FXMLDocumentController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-
 }

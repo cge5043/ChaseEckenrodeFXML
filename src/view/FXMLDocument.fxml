@@ -14,7 +14,7 @@
         <Button fx:id="button" layoutX="245.0" layoutY="163.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Button fx:id="buttonCreateEmail" layoutX="19.0" layoutY="11.0" mnemonicParsing="false" onAction="#createEmail" text="Create Email" />
-      <Button fx:id="buttonReadByEmailTitle" layoutX="19.0" layoutY="50.0" mnemonicParsing="false" onAction="#readByEmailAddress" text="Read By Email Title" />
+      <Button fx:id="buttonReadByEmailAddress" layoutX="19.0" layoutY="50.0" mnemonicParsing="false" onAction="#readByEmailAddress" text="Read By Email Title" />
       <Button fx:id="buttonDeleteEmail" layoutX="19.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteEmail" text="Delete Email" />
       <Button fx:id="buttonUpdateEmails" layoutX="19.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateEmails" text="Update Emails" />
       <Label layoutX="15.0" layoutY="228.0" text="Search Emails">
@@ -34,8 +34,8 @@
         </columns>
       </TableView>
       <Line endX="527.0" layoutX="268.0" layoutY="218.0" startX="-267.9999694824219" />
-      <TextField fx:id="textboxTitle" layoutX="221.0" layoutY="275.0" prefHeight="26.0" prefWidth="373.0" promptText="Enter Email Title" />
-      <Label layoutX="145.0" layoutY="274.0" text="By Title:">
+      <TextField fx:id="textboxSender" layoutX="221.0" layoutY="275.0" prefHeight="26.0" prefWidth="373.0" promptText="Enter Email Sender" />
+      <Label layoutX="134.0" layoutY="274.0" text="By Sender:">
          <font>
             <Font size="18.0" />
          </font>

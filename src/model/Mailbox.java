@@ -30,13 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Mailbox.findByCanvasaccountid", query = "SELECT m FROM Mailbox m WHERE m.canvasaccountid = :canvasaccountid"),
     @NamedQuery(name = "Mailbox.findByEmailsender", query = "SELECT m FROM Mailbox m WHERE m.emailsender = :emailsender"),
     @NamedQuery(name = "Mailbox.findByEmailtitle", query = "SELECT m FROM Mailbox m WHERE m.emailtitle = :emailtitle"),
-    @NamedQuery(name = "Mailbox.findByEmaildate", query = "SELECT m FROM Mailbox m WHERE m.emaildate = :emaildate"),
-    @NamedQuery(name = "Mailbox.findByTitleAdvanced", query = "SELECT m FROM Mailbox m WHERE  LOWER(m.emailtitle) LIKE  CONCAT('%', LOWER(:emailtitle), '%')")})
-    
+    @NamedQuery(name = "Mailbox.findByEmailtext", query = "SELECT m FROM Mailbox m WHERE m.emailtext = :emailtext"),
+    @NamedQuery(name = "Mailbox.findByEmaildate", query = "SELECT m FROM Mailbox m WHERE m.emaildate = :emaildate")})
 public class Mailbox implements Serializable {
-
-    @Column(name = "EMAILTEXT")
-    private String emailtext;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,7 +44,8 @@ public class Mailbox implements Serializable {
     private String emailsender;
     @Column(name = "EMAILTITLE")
     private String emailtitle;
-    @Basic(optional = false)
+    @Column(name = "EMAILTEXT")
+    private String emailtext;
     @Column(name = "EMAILDATE")
     @Temporal(TemporalType.DATE)
     private Date emaildate;
@@ -60,12 +57,9 @@ public class Mailbox implements Serializable {
         this.canvasaccountid = canvasaccountid;
     }
 
-    public Mailbox(Integer canvasaccountid, String emailsender, String emailtitle, String emailtext, Date emaildate) {
+    public Mailbox(Integer canvasaccountid, String emailsender) {
         this.canvasaccountid = canvasaccountid;
         this.emailsender = emailsender;
-        this.emailtitle = emailtitle;
-        this.emailtext = emailtext;
-        this.emaildate = emaildate;
     }
 
     public Integer getCanvasaccountid() {
@@ -92,20 +86,20 @@ public class Mailbox implements Serializable {
         this.emailtitle = emailtitle;
     }
 
-    public Date getEmaildate() {
-        return emaildate;
-    }
-
-    public void setEmaildate(Date emaildate) {
-        this.emaildate = emaildate;
-    }
-    
     public String getEmailtext() {
         return emailtext;
     }
 
     public void setEmailtext(String emailtext) {
         this.emailtext = emailtext;
+    }
+
+    public Date getEmaildate() {
+        return emaildate;
+    }
+
+    public void setEmaildate(Date emaildate) {
+        this.emaildate = emaildate;
     }
 
     @Override
@@ -132,7 +126,5 @@ public class Mailbox implements Serializable {
     public String toString() {
         return "model.Mailbox[ canvasaccountid=" + canvasaccountid + " ]";
     }
-
-    
     
 }
