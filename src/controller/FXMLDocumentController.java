@@ -170,13 +170,13 @@ public class FXMLDocumentController implements Initializable {
         int id = input.nextInt();
         
         System.out.println("Enter Email Address:");
-        String emailAddress = input.next();
+        String emailAddress = input.nextLine();
         
         System.out.println("Enter Email Title:");
-        String emailTitle = input.next();
+        String emailTitle = input.nextLine();
         
         System.out.println("Enter Email Text:");
-        String emailText = input.next();
+        String emailText = input.nextLine();
         
         //test code//
         System.out.println("Code break????");

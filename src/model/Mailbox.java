@@ -30,7 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Mailbox.findByCanvasaccountid", query = "SELECT m FROM Mailbox m WHERE m.canvasaccountid = :canvasaccountid"),
     @NamedQuery(name = "Mailbox.findByEmailsender", query = "SELECT m FROM Mailbox m WHERE m.emailsender = :emailsender"),
     @NamedQuery(name = "Mailbox.findByEmailtitle", query = "SELECT m FROM Mailbox m WHERE m.emailtitle = :emailtitle"),
-    @NamedQuery(name = "Mailbox.findByEmaildate", query = "SELECT m FROM Mailbox m WHERE m.emaildate = :emaildate")})
+    @NamedQuery(name = "Mailbox.findByEmaildate", query = "SELECT m FROM Mailbox m WHERE m.emaildate = :emaildate"),
+    @NamedQuery(name = "Mailbox.findByTitleAdvanced", query = "SELECT m FROM Mailbox m WHERE  LOWER(m.emailtitle) LIKE  CONCAT('%', LOWER(:emailtitle), '%')")})
+    
 public class Mailbox implements Serializable {
 
     @Column(name = "EMAILTEXT")
