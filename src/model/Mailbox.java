@@ -58,9 +58,11 @@ public class Mailbox implements Serializable {
         this.canvasaccountid = canvasaccountid;
     }
 
-    public Mailbox(Integer canvasaccountid, String emailsender, Date emaildate) {
+    public Mailbox(Integer canvasaccountid, String emailsender, String emailtitle, String emailtext, Date emaildate) {
         this.canvasaccountid = canvasaccountid;
         this.emailsender = emailsender;
+        this.emailtitle = emailtitle;
+        this.emailtext = emailtext;
         this.emaildate = emaildate;
     }
 
@@ -95,6 +97,14 @@ public class Mailbox implements Serializable {
     public void setEmaildate(Date emaildate) {
         this.emaildate = emaildate;
     }
+    
+    public String getEmailtext() {
+        return emailtext;
+    }
+
+    public void setEmailtext(String emailtext) {
+        this.emailtext = emailtext;
+    }
 
     @Override
     public int hashCode() {
@@ -121,12 +131,6 @@ public class Mailbox implements Serializable {
         return "model.Mailbox[ canvasaccountid=" + canvasaccountid + " ]";
     }
 
-    public String getEmailtext() {
-        return emailtext;
-    }
-
-    public void setEmailtext(String emailtext) {
-        this.emailtext = emailtext;
-    }
+    
     
 }

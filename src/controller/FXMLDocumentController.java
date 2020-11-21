@@ -20,11 +20,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -59,22 +62,22 @@ public class FXMLDocumentController implements Initializable {
     private Button buttonReadByIdAndEmailAddress;
     
     @FXML
-    private TextField textboxName;
+    private TextField textboxTitle;
     
     @FXML
     private TableView<Mailbox> emailTable;
     
     @FXML
-    private TableColumn<Mailbox, Integer> canvasID;
+    private TableColumn<Mailbox, Integer> canvasaccountid;
     
     @FXML
-    private TableColumn<Mailbox, String> emailSender;
+    private TableColumn<Mailbox, String> emailsender;
     
     @FXML
-    private TableColumn<Mailbox, String> emailTitle;
+    private TableColumn<Mailbox, String> emailtitle;
     
     @FXML
-    private TableColumn<Mailbox, Date> emailDate;
+    private TableColumn<Mailbox, Date> emaildate;
 
     private ObservableList<Mailbox> emailData;
 
@@ -90,8 +93,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void searchByEmailAction(ActionEvent event) {
         System.out.println("clicked");       
-        String name = textboxName.getText();
-//        List<Mailbox> emails = readByEmail(name);
+        String title = textboxTitle.getText();
+//        List<Mailbox> emails = readByTitle(title);
 //
 //        if (emails == null || emails.isEmpty()) {
 //
@@ -111,9 +114,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     void searchByEmailAdvancedAction(ActionEvent event) {
         System.out.println("clicked");     
-        String name = textboxName.getText();
+        String title = textboxTitle.getText();
 
-//        List<Mailbox> emails = readByNameAdvanced(name);
+//        List<Mailbox> emails = readByNameAdvanced(title);
 //
 //        if (emails == null || emails.isEmpty()) {
 //            Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -175,6 +178,10 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter Email Text:");
         String emailText = input.next();
         
+        //test code//
+        System.out.println("Code break????");
+        // 
+        
         Mailbox email = new Mailbox();
         
         
@@ -203,13 +210,13 @@ public class FXMLDocumentController implements Initializable {
     
 
     @FXML
-    void readByID(ActionEvent event) {
+    void readByTitle(ActionEvent event) {
         Scanner input = new Scanner(System.in);
         
-        System.out.println("Enter ID:");
-        int id = input.nextInt();
+        System.out.println("Enter Title:");
+        int title = input.nextInt();
         
-        Mailbox e = readById(id);
+        Mailbox e = readById(title);
         System.out.println(e.toString());
 
     }
@@ -289,6 +296,15 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //database reference: "IntroJavaFXPU"
         manager = (EntityManager) Persistence.createEntityManagerFactory("gp11_db").createEntityManager();
+        
+        // CODE FROM SAMPLE
+        canvasaccountid.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        emailsender.setCellValueFactory(new PropertyValueFactory<>("Email Sender"));
+        emailtitle.setCellValueFactory(new PropertyValueFactory<>("Email Title"));
+        emaildate.setCellValueFactory(new PropertyValueFactory<>("Email Date"));
+
+        //eanble row selection
+        emailTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
 
