@@ -25,10 +25,10 @@ public class DetailModelController {
     private Button backButton; // Value injected by FXMLLoader
 
     @FXML 
-    private Label labelID; // Value injected by FXMLLoader
+    private Label labelTitle; // Value injected by FXMLLoader
 
     @FXML 
-    private Label labelValue; // Value injected by FXMLLoader
+    private Label labelText; // Value injected by FXMLLoader
 
     @FXML 
     private ImageView image; // Value injected by FXMLLoader
@@ -55,8 +55,8 @@ public class DetailModelController {
 
     public void initData(Mailbox model) {
         selectedModel = model;
-        labelID.setText(model.getCanvasaccountid().toString());
-        labelValue.setText(model.getEmailsender());
+        labelText.setText(model.getEmailtext().toString());
+        labelTitle.setText(model.getEmailsender());
 
         try {
             String imagename = "/resource/images/" + model.getEmailsender() + ".png";
@@ -71,8 +71,8 @@ public class DetailModelController {
     @FXML // Got from sample code
     void initialize() {
         assert backButton != null : "fx:id=\"backButtong\" was not injected: check your FXML file 'DetailModelView.fxml'.";
-        assert labelID != null : "fx:id=\"labelID\" was not injected: check your FXML file 'DetailModelView.fxml'.";
-        assert labelValue != null : "fx:id=\"labelValue\" was not injected: check your FXML file 'DetailModelView.fxml'.";
+        assert labelText != null : "fx:id=\"labelText\" was not injected: check your FXML file 'DetailModelView.fxml'.";
+        assert labelTitle != null : "fx:id=\"labelTitle\" was not injected: check your FXML file 'DetailModelView.fxml'.";
         assert image != null : "fx:id=\"image\" was not injected: check your FXML file 'DetailModelView.fxml'.";
 
         backButton.setDisable(true);
