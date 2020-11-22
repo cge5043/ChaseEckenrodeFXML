@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -47,8 +44,7 @@ public class Mailbox implements Serializable {
     @Column(name = "EMAILTEXT")
     private String emailtext;
     @Column(name = "EMAILDATE")
-    @Temporal(TemporalType.DATE)
-    private Date emaildate;
+    private String emaildate;
 
     public Mailbox() {
     }
@@ -94,11 +90,11 @@ public class Mailbox implements Serializable {
         this.emailtext = emailtext;
     }
 
-    public Date getEmaildate() {
+    public String getEmaildate() {
         return emaildate;
     }
 
-    public void setEmaildate(Date emaildate) {
+    public void setEmaildate(String emaildate) {
         this.emaildate = emaildate;
     }
 
@@ -125,6 +121,5 @@ public class Mailbox implements Serializable {
     @Override
     public String toString() {
         return "model.Mailbox[ canvasaccountid=" + canvasaccountid + " ]";
-    }
-    
+    }  
 }

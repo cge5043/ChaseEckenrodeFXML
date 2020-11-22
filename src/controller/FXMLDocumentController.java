@@ -7,7 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -77,12 +78,13 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Mailbox, String> emailtitle;
     
     @FXML
-    private TableColumn<Mailbox, Date> emaildate;
+    private TableColumn<Mailbox, String> emaildate;
 
     private ObservableList<Mailbox> emailData;
 
     public void setTableData(List<Mailbox> emailList) {
         emailData = FXCollections.observableArrayList();
+        System.out.println("Hello");
         emailList.forEach(s -> {
             emailData.add(s);
         });
@@ -164,12 +166,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     void createEmail(ActionEvent event) {
-        Scanner input = new Scanner(System.in);
+        Scanner numinput = new Scanner(System.in);
         
         System.out.println("Enter ID:");
-        int id = input.nextInt();
+        int id = numinput.nextInt();
         
-        System.out.println("Enter Email Address:");
+        Scanner input = new Scanner (System.in);
+        
+        System.out.println("Enter Email Address:");       
         String emailAddress = input.nextLine();
         
         System.out.println("Enter Email Title:");
@@ -178,9 +182,10 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("Enter Email Text:");
         String emailText = input.nextLine();
         
-        //test code//
-        System.out.println("Code break????");
-        // 
+        //Got from https://mkyong.com/java/java-how-to-get-current-date-time-date-and-calender/
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
+        String emailDate = dtf.format(localDate);
         
         Mailbox email = new Mailbox();
         
@@ -189,6 +194,7 @@ public class FXMLDocumentController implements Initializable {
         email.setEmailsender(emailAddress);
         email.setEmailtitle(emailTitle);
         email.setEmailtext(emailText);
+        email.setEmaildate(emailDate);
             
         create(email);
 
@@ -285,7 +291,7 @@ public class FXMLDocumentController implements Initializable {
         List<Mailbox> data = query.getResultList();
 
         for (Mailbox e : data) {
-            System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
+            //System.out.println(e.getCanvasaccountid() + " " + e.getEmailsender() + " " + e.getEmailtitle());
         }
     }
 
