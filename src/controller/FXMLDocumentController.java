@@ -118,18 +118,18 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("clicked");     
         String title = textboxSender.getText();
 
-//        List<Mailbox> emails = readBySenderAdvanced(title);
-//
-//        if (emails == null || emails.isEmpty()) {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Information Dialog Box");
-//            alert.setHeaderText("This is header section to write heading");
-//            alert.setContentText("No email");
-//            alert.showAndWait();
-//        } 
-//        else {
-//            setTableData(emails);
-//        }
+        List<Mailbox> emails = readByEmailAddress(title);
+
+        if (emails == null || emails.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog Box");
+            alert.setHeaderText("This is header section to write heading");
+            alert.setContentText("No email");
+            alert.showAndWait();
+        } 
+        else {
+            setTableData(emails);
+        }
     }
 
     @FXML
@@ -367,7 +367,7 @@ public class FXMLDocumentController implements Initializable {
     
     //from class code
     public List<Mailbox> readByEmailAddress(String emailAddress){
-        Query query = manager.createNamedQuery("Mailbox.findByEmailsender");
+        Query query = manager.createNamedQuery("Mailbox.findBySenderAdvanced");
         
 
         query.setParameter("emailsender", emailAddress);
